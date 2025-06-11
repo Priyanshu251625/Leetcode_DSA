@@ -1,0 +1,23 @@
+Given an integer array nums, rotate the array to the right by k steps, where k is non-negative.
+
+code:-
+class Solution {
+    public void rotate(int[] arr, int d) {
+        int n=arr.length;
+        d=d%n;
+        rev(arr,0,n-d);
+        rev(arr,n-d,n);
+        rev(arr,0,n);
+        
+    }
+    static void rev(int[]arr,int start,int end){
+        end=end-1;
+        while(end>=start){
+            int temp=arr[start];
+            arr[start]=arr[end];
+            arr[end]=temp;
+            start++;
+            end--;
+        }
+    }
+}
