@@ -1,0 +1,13 @@
+class Solution {
+    public List<Integer> getRow(int rowIndex) {
+        List<Integer> ans=new ArrayList<>();
+        long term=1;
+        ans.add((int)term);
+        for(int col=0;col<rowIndex;col++){
+            term=term*(rowIndex-col);
+            term=term/(col+1);
+            ans.add((int)term);
+        }
+        return ans;
+    }
+}
