@@ -1,0 +1,21 @@
+class Solution {
+    public int lastRemaining(int n) {
+        int remaining=n;
+        int head=1;
+        int step=1;
+        boolean LtoR=true;
+        while(remaining>1){
+            if(LtoR==true || remaining%2!=0){
+                head=head+step;
+                remaining=remaining/2;
+                step=step*2;
+            }
+            else{
+                remaining=remaining/2;
+                step=step*2;
+            }
+            LtoR=!LtoR;
+        }
+        return head;
+    }
+}
