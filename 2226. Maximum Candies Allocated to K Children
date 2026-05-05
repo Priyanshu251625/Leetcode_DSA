@@ -1,0 +1,30 @@
+class Solution {
+    boolean possible(int[] candies, int mid, long k){
+        long pile=0;
+        for(int num:candies){
+            pile+=(long)num/(long)mid;
+            if(pile>=k) return true;
+        }
+        return false;
+    }
+    public int maximumCandies(int[] candies, long k) {
+        long sum=0;
+        int low=1;
+        int high=Integer.MIN_VALUE;
+        for(int num:candies){
+            high=Math.max(num,high);
+            sum+=(long)num;
+        }
+        if(sum<k) return 0;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(possible(candies,mid,k)){
+                low=mid+1;
+            }
+            else{
+                high=mid-1;
+            }
+        }
+        return high;
+    }
+}
