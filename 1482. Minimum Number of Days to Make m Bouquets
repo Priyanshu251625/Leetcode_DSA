@@ -1,0 +1,40 @@
+class Solution {
+    boolean bouqPossible(int[]bloomDay,int day,int m,int k){
+        int count=0;
+        int noBouq=0;
+        for(int bDay:bloomDay){
+            if(bDay<=day){
+                count++;
+            }
+            else{
+                noBouq+=count/k;
+                count=0;
+            }
+        }
+        noBouq+=count/k;
+        if(noBouq>=m){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public int minDays(int[] bloomDay, int m, int k) {
+        if((long)m*(long)k>bloomDay.length) return -1;
+        int low=Integer.MAX_VALUE,high=Integer.MIN_VALUE;
+        for(int num:bloomDay){
+            low=Math.min(low,num);
+            high=Math.max(high,num);
+        }
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(bouqPossible(bloomDay,mid,m,k)){
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        return low;
+    }
+}
