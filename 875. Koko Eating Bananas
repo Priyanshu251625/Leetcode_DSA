@@ -1,0 +1,26 @@
+class Solution {
+    long findTime(int[]nums, int d){
+        long time=0;
+        for(int num:nums){
+            time+=((long)num+(long)d-(long)1)/(long)d;
+        }
+        return time;
+    }
+    public int minEatingSpeed(int[] piles, int h) {
+        int low=1,high=0;
+        for(int num:piles){
+            high=Math.max(high,num);
+        }
+        while(low<=high){
+            int mid=(low+high)/2;
+            long time_taken=findTime(piles,mid);
+            if(time_taken<=h){
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        return low;
+    }
+}
