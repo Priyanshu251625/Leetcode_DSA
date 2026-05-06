@@ -1,0 +1,27 @@
+class Solution {
+    boolean sumLessThanThreshold(int[] nums, int mid, int threshold){
+        long sum=0;
+        for(int num:nums){
+            sum+=(num+mid-1)/mid;
+        }
+        if(sum<=threshold) return true;
+        else return false;
+    }
+    public int smallestDivisor(int[] nums, int threshold) {
+        int low=1;
+        int high=0;
+        for(int num:nums){
+            high=Math.max(num,high);
+        }
+        while(low<=high){
+            int mid=low+(high-low)/2;
+            if(sumLessThanThreshold(nums,mid,threshold)){
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        return low;
+    }
+}
