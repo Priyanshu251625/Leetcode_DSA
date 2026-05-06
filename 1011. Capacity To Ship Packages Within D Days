@@ -1,0 +1,33 @@
+class Solution {
+    int shipDays(int[] wts,int cap){
+        int load=0;
+        int days=1;
+        for(int wt:wts){
+            load+=wt;
+            if(load>cap){
+                days++;
+                load=wt;
+            }
+        }
+        return days;
+        
+    }
+    public int shipWithinDays(int[] weights, int days) {
+        int low=0;
+        int high=0;
+        for(int wt:weights){
+            low=Math.max(wt,low);
+            high+=wt;
+        }
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(shipDays(weights,mid)<=days){
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        return low;
+    }
+}
