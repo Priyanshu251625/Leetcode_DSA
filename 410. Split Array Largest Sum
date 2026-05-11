@@ -1,0 +1,37 @@
+class Solution {
+    int split(int[]arr, int limit){
+        int subs=1;
+        int sum=0;
+        for(int num:arr){
+            if(sum+num<=limit){
+                sum+=num;
+            }
+            else{
+                subs++;
+                sum=num;
+            }
+        }
+        return subs;
+    }
+    public int splitArray(int[] nums, int k) {
+        int low=0;
+        int high=0;
+        for(int num:nums){
+            low=Math.max(low,num);
+            high+=num;
+        }
+        if(k==1){
+            return high;
+        }
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(split(nums,mid)<=k){
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        return low;
+    }
+}
