@@ -1,0 +1,19 @@
+class Solution {
+    public int waysToSplitArray(int[] nums) {
+        int n=nums.length;
+        long sum=0;
+        int count=0;
+        long sumleft=0;
+        for(int num:nums){
+            sum+=num;
+        }
+        for(int i=0;i<n-1;i++){
+            sumleft+=nums[i];
+            sum-=nums[i];
+            if(sumleft>=sum){
+                count++;
+            }
+        }
+        return count;
+    }
+}
