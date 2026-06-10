@@ -1,0 +1,29 @@
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        if(s.length()!=t.length()) return false;
+        int[] freq=new int[26];
+        for(int i=0;i<s.length();i++){
+            freq[s.charAt(i)-'a']++;
+            freq[t.charAt(i)-'a']--;
+        }
+        for(int i=0;i<26;i++){
+            if(freq[i]!=0) return false;
+        }
+        return true;
+    }
+    public List<String> removeAnagrams(String[] words) {
+        List<String>ans=new ArrayList<>();
+        ans.add(words[0]);
+        String last=words[0];
+        for(int i=1;i<words.length;i++){
+            if(isAnagram(last,words[i])){
+                continue;
+            }
+            else{
+                ans.add(words[i]);
+                last=words[i];
+            }
+        }
+        return ans;
+    }
+}
