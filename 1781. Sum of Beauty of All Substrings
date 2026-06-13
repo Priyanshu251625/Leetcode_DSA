@@ -1,0 +1,22 @@
+class Solution {
+    public int beautySum(String s) {
+        int n=s.length();
+        int sum=0;
+        for(int i=0;i<n;i++){
+            int[] hash=new int[26];
+            for(int j=i;j<n;j++){
+                hash[s.charAt(j)-'a']++;
+                int min=Integer.MAX_VALUE;
+                int max=0;
+                for(int l=0;l<26;l++){
+                    if(hash[l]>0){
+                        min=Math.min(min,hash[l]);
+                        max=Math.max(max,hash[l]);
+                    }
+                }
+                sum+=(max-min);
+            }
+        }
+        return sum;
+    }
+}
