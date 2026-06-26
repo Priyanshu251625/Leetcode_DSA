@@ -1,0 +1,17 @@
+class Solution {
+    public String capitalizeTitle(String title) {
+        int i=0;
+        StringBuilder ans=new StringBuilder(title.toLowerCase());
+        int n=title.length();
+        while(i<n){
+            int startIndex=i;
+            int ch=ans.charAt(startIndex);
+            while(i<n && ans.charAt(i)!=' ') i++;
+            if(i-startIndex>2){
+                ans.setCharAt(startIndex,(char)(ch-32));
+            }
+            i++;
+        }
+        return ans.toString();
+    }
+}
